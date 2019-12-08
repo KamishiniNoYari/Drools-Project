@@ -1,0 +1,483 @@
+package com.sample
+
+import javax.swing.*;
+import org.kie.api.runtime.*;
+import java.util.ArrayList;
+
+global JFrame frame;
+
+declare enum Question
+    FUTURE("Are you thinking about near or distant future?",
+     ["Distant Future", "Near Future", "Retro Future", "A long time ago in a galaxy far, far away..."]),
+      DISTANT_FUTURE("Have robots or Cyborgs taken over?", ["Robots", "Cyborgs","None of them"]),
+      	ROBOTS("What kind of Robots?", ["Mean robots", "Cute robots"]),
+        NONE("Have computers taken over?", ["Yes","No"]),
+        	NO_COMPUTERS("That's suprising. Why not?",["BECAUSE ALL THESE SPACE ZOBIES!!",
+        	"Too much galactic civil war", "The planet is dying",
+        	"Who cares? murder sports are on!", "I can't really worry about that now"]),
+        		ZOMBIES("Oh no! where are you?", ["In space, where no one can hear you scream",
+        		"Stranded on the blood-red planet"]),
+        		CIVIL_WAR("What do you fight with?", ["Power armor", "Spaceships"]),
+        		DYING_PLANET("What are you going to do?", ["Stop the bad guys",
+        		"Build a city"]),
+        		MURDERS("Are they family friendly?", ["Yes", "Hell NO!"]),
+        		BUSY("What's keeping you busy?", ["I'm trapped in an alternate dimension",
+        		"I need to reclaim my homeworld", "These bandits attacking me",
+        		"Gravity isn't working", "I need to escape...", "The oppresive martian government"]),
+        			ESCAPE("You need to escape...", ["Spaceship", "Planet"]),
+      NEAR_FUTURE("Ok, so what are you doing then?", 
+      ["Blowing up bad guys","Escaping the computer","Surviving the apocalypse",
+      "Doing some science!", "Fighting back!", "Exploring other planets"]),
+      	APOCALYPSE("Where?", ["Russia", "America", "Middle of the ocean"]),
+      	SCIENCE("Are you thinking with portals?", ["Yes", "No"]),
+      	FIGHT("Against who?", ["Alien invaders", "Secret conspiracies", "The police"]),
+      RETRO_FUTURE("Like, what if the Cold War never ended?", ["Yes", "No"]),
+      GALAXY_FUTURE("Do you want to use guns or lightsabers?", ["Guns", "Lightsabers", "Why not both?"]),
+      	LIGHTSABERS("Is Luke Skywalker your favorite?", ["Yes", "No"]);
+    text : String
+    options : ArrayList
+end
+
+declare Answer
+    question : Question @key
+    choice : String
+end
+
+declare Result
+	text: String
+end
+
+//SUPPORT RULES
+rule "asker"
+when
+	q: Question()
+then
+	Object[] options = q.getOptions().toArray();
+    int ans = JOptionPane.showOptionDialog(frame, q.getText(), "", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, 1);
+            
+    if(ans != JOptionPane.CLOSED_OPTION) {
+    	Answer answer = new Answer(q, (String)options[ans]);
+    	insert(answer);
+    }
+	
+end
+
+rule "shower"
+when
+	r: Result()
+then
+	JOptionPane.showMessageDialog(frame, r.getText());
+end
+
+ 
+//Initializing
+rule "init"
+then
+    insert(Question.FUTURE);
+end
+
+//Choice of FUTURE
+rule "FUTURE - distant"
+when
+    Answer(question == Question.FUTURE, choice == "Distant Future")
+then
+   insert(Question.DISTANT_FUTURE);
+end
+
+rule "FUTURE - near"
+when
+    Answer(question == Question.FUTURE, choice == "Near Future")
+then
+   insert(Question.NEAR_FUTURE);
+end
+
+rule "FUTURE - retro"
+when
+    Answer(question == Question.FUTURE, choice == "Retro Future")
+then
+   insert(Question.RETRO_FUTURE);
+end
+
+rule "FUTURE - galaxy"
+when
+	Answer(question == Question.FUTURE, choice == "A long time ago in a galaxy far, far away...")
+then
+	insert(Question.GALAXY_FUTURE);
+end
+
+//Choice of distant future
+
+rule "DISTANT_FUTURE - robots"
+when
+    Answer(question == Question.DISTANT_FUTURE, choice == "Robots")
+then
+   insert(Question.ROBOTS);
+end
+
+rule "DISTANT_FUTURE - cyborgs"
+when
+    Answer(question == Question.DISTANT_FUTURE, choice == "Cyborgs")
+then
+   insert(new Result("Your game is BIOFORGE"));
+end
+
+rule "DISTANT_FUTURE - none"
+when
+	Answer(question == Question.DISTANT_FUTURE, choice == "None of them")
+then
+	insert(Question.NONE);
+end
+
+//Choice of near future
+
+rule "NEAR_FUTURE - bad guys"
+when
+    Answer(question == Question.NEAR_FUTURE, choice == "Blowing up bad guys")
+then
+   insert(new Result("Your game is Intrusion 2"));
+end
+
+rule "NEAR_FUTURE - escaping"
+when
+    Answer(question == Question.NEAR_FUTURE, choice == "Escaping the computer")
+then
+   insert(new Result("Your game is Thomas was alone or not that much"));
+end
+
+rule "NEAR_FUTURE - apocalypse"
+when
+    Answer(question == Question.NEAR_FUTURE, choice == "Surviving the apocalypse")
+then
+   insert(Question.APOCALYPSE);
+end
+
+rule "NEAR_FUTURE - science"
+when
+    Answer(question == Question.NEAR_FUTURE, choice == "Doing some science!")
+then
+   insert(Question.SCIENCE);
+end
+
+rule "NEAR_FUTURE - fight"
+when
+    Answer(question == Question.NEAR_FUTURE, choice == "Fighting back!")
+then
+   insert(Question.FIGHT);
+end
+
+rule "NEAR_FUTURE - exploring"
+when
+    Answer(question == Question.NEAR_FUTURE, choice == "Exploring other planets")
+then
+   insert(new Result("Your game is Waking Mars or Capsized"));
+end
+
+//Choice of retro future
+
+rule "RETRO_FUTURE - yes"
+when 
+	Answer(question == Question.RETRO_FUTURE, choice == "Yes")
+then
+	insert(new Result("Yourgame is Red Alert 3 Uprising"));
+end
+
+rule "RETRO_FUTURE - no"
+when 
+	Answer(question == Question.RETRO_FUTURE, choice == "No")
+then
+	insert(new Result("Yourgame is FARCRY3 Blood Dragon or ROUTINE"));
+end
+
+//Choice of galaxy
+
+rule "GALAXY_FUTURE - guns"
+when 
+	Answer(question == Question.GALAXY_FUTURE, choice == "Guns")
+then
+	insert(new Result("Yourgame is Star Wars Republic Commando"));
+end
+
+rule "GALAXY_FUTURE - lightsabers"
+when 
+	Answer(question == Question.GALAXY_FUTURE, choice == "Lightsabers")
+then
+	insert(Question.LIGHTSABERS);
+end
+
+rule "GALAXY_FUTURE - both"
+when 
+	Answer(question == Question.GALAXY_FUTURE, choice == "Why not both?")
+then
+	insert(new Result("Yourgame is Star Wars Battle Front"));
+end
+
+//Choice of robots
+
+rule "ROBOTS - mean"
+when
+    Answer(question == Question.ROBOTS, choice == "Mean robots")
+then
+    insert(new Result("Your game is Enslaved"));
+end
+
+rule "ROBOTS - cute"
+when
+    Answer(question == Question.ROBOTS, choice == "Cute robots")
+then
+    insert(new Result("Your game is Machinarium"));
+end
+
+//Choice of None
+
+rule "NONE - yes"
+when
+    Answer(question == Question.NONE, choice == "Yes")
+then
+   insert(Question.NO_COMPUTERS);
+end
+
+rule "NONE - no"
+when
+    Answer(question == Question.NONE, choice == "No")
+then
+   insert(Question.NO_COMPUTERS);
+end
+
+//Choice of apocalypse
+
+rule "APOCALYPSE - russia"
+when
+    Answer(question == Question.APOCALYPSE, choice == "Russia")
+then
+  	insert(new Result("Your game is METRO 2033"));
+end
+
+rule "APOCALYPSE - america"
+when
+    Answer(question == Question.APOCALYPSE, choice == "America")
+then
+  	insert(new Result("Your game is Fallout New Vegas"));
+end
+
+rule "APOCALYPSE - middle"
+when
+    Answer(question == Question.APOCALYPSE, choice == "Middle of the ocean")
+then
+  	insert(new Result("Your game is Oil Rush"));
+end
+
+//Choice of science
+rule "SCIENCE - yes"
+when
+    Answer(question == Question.SCIENCE, choice == "Yes")
+then
+  	insert(new Result("Your game is Portal"));
+end
+
+rule "SCIENCE - no"
+when
+    Answer(question == Question.SCIENCE, choice == "No")
+then
+  	insert(new Result("Your game is Quantum Conondrum"));
+end
+
+//Choice of fight
+
+rule "FIGHT - aliens"
+when
+	Answer(question == Question.FIGHT, choice == "Alien invaders")
+then
+	insert(new Result("Your game is Half-Life"));
+end
+
+rule "FIGHT - secret"
+when
+	Answer(question == Question.FIGHT, choice == "Secret conspiracies")
+then
+	insert(new Result("Your game is Deus Ex"));
+end
+
+rule "FIGHT - police"
+when
+	Answer(question == Question.FIGHT, choice == "The police")
+then
+	insert(new Result("Your game is Mirror's Edge"));
+end
+
+//Choice of lightsabers
+
+rule "LIGHTSABERS - no"
+when
+	Answer(question == Question.LIGHTSABERS, choice == "No")
+then
+	insert(new Result("Your game is Start Wars Knights Of The Old Republic"));
+end
+
+rule "LIGHTSABERS - yes"
+when
+	Answer(question == Question.LIGHTSABERS, choice == "Yes")
+then
+	insert(new Result("Your game is Start Wars Jedi Knight Jedi Academy"));
+end
+
+//Choice of computers
+
+rule "NO_COMPUTERS - zombie"
+when
+	Answer(question == Question.NO_COMPUTERS, choice == "BECAUSE ALL THESE SPACE ZOBIES!!")
+then
+	insert(Question.ZOMBIES);
+end
+
+rule "NO_COMPUTERS - civil war"
+when
+	Answer(question == Question.NO_COMPUTERS, choice == "Too much galactic civil war")
+then
+	insert(Question.CIVIL_WAR);
+end
+
+rule "NO_COMPUTERS - dying planet"
+when
+	Answer(question == Question.NO_COMPUTERS, choice == "The planet is dying")
+then
+	insert(Question.DYING_PLANET);
+end
+
+rule "NO_COMPUTERS - murders"
+when
+	Answer(question == Question.NO_COMPUTERS, choice == "Who cares? murder sports are on!")
+then
+	insert(Question.MURDERS);
+end
+
+rule "NO_COMPUTERS - busy"
+when
+	Answer(question == Question.NO_COMPUTERS, choice == "I can't really worry about that now")
+then
+	insert(Question.BUSY);
+end
+
+//Choice of zombies
+
+rule "ZOMBIES - scream"
+when
+	Answer(question == Question.ZOMBIES, choice == "In space, where no one can hear you scream")
+then
+	insert(new Result("Your game is Dead Space"));
+end
+
+rule "ZOMBIES - planet"
+when
+	Answer(question == Question.ZOMBIES, choice == "Stranded on the blood-red planet")
+then
+	insert(new Result("Your game is DOOM"));
+end
+
+//Choice of civil_war
+
+rule "CIVIL_WAR - armor"
+when
+	Answer(question == Question.CIVIL_WAR, choice == "Power armor")
+then
+	insert(new Result("Your game is Section 8"));
+end
+
+rule "CIVIL_WAR - ships"
+when
+	Answer(question == Question.CIVIL_WAR, choice == "Spaceships")
+then
+	insert(new Result("Your game is FTL"));
+end
+
+//Choice of dying planet
+
+rule "DYING_PLANET - bad guys"
+when
+	Answer(question == Question.DYING_PLANET, choice == "Stop the bad guys")
+then
+	insert(new Result("Your game is Final Fantasy VII"));
+end
+
+rule "DYING_PLANET - city"
+when
+	Answer(question == Question.DYING_PLANET, choice == "Build a city")
+then
+	insert(new Result("Your game is ANNO 2070"));
+end
+
+//Choice of murders
+
+rule "MURDERS - friendly"
+when
+	Answer(question == Question.MURDERS, choice == "Yes")
+then
+	insert(new Result("Your game is Awesomenauts"));
+end
+
+rule "MURDERS - not friendly"
+when
+	Answer(question == Question.MURDERS, choice == "Hell NO!")
+then
+	insert(new Result("Your game is Unreal Tournament"));
+end
+
+//Choice of BUSY
+
+rule "BUSY - dimension"
+when
+	Answer(question == Question.BUSY, choice == "I'm trapped in an alternate dimension")
+then
+	insert(new Result("Your game is The Longest Journey"));
+end
+
+rule "BUSY - homeworld"
+when
+	Answer(question == Question.BUSY, choice == "I need to reclaim my homeworld")
+then
+	insert(new Result("Your game is HomeWorld"));
+end
+
+rule "BUSY - bandits"
+when
+	Answer(question == Question.BUSY, choice == "These bandits attacking me")
+then
+	insert(new Result("Your game is Borderlands 2"));
+end
+
+rule "BUSY - gravity"
+when
+	Answer(question == Question.BUSY, choice == "Gravity isn't working")
+then
+	insert(new Result("Your game is Inversion"));
+end
+
+rule "BUSY - escape"
+when
+	Answer(question == Question.BUSY, choice == "I need to escape...")
+then
+	insert(Question.ESCAPE);
+end
+
+rule "BUSY - government"
+when
+	Answer(question == Question.BUSY, choice == "The oppresive martian government")
+then
+	insert(new Result("Your game is MARS"));
+end
+
+//Choice of escape
+
+rule "ESCAPE - spaceship"
+when
+	Answer(question == Question.ESCAPE, choice == "Spaceship")
+then
+	insert(new Result("Your game is Harginger"));
+end
+
+rule "ESCAPE - planet"
+when
+	Answer(question == Question.ESCAPE, choice == "Planet")
+then
+	insert(new Result("Your game is Unreal"));
+end
+
