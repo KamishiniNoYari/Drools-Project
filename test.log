@@ -4,15 +4,15 @@
   <events>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>init [0]</activationId>
-      <rule>init</rule>
+      <activationId>INIT [0]</activationId>
+      <rule>INIT</rule>
       <declarations></declarations>
       <factHandleIds>0</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>init [0]</activationId>
-      <rule>init</rule>
+      <activationId>INIT [0]</activationId>
+      <rule>INIT</rule>
       <declarations></declarations>
       <factHandleIds>0</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
@@ -23,187 +23,135 @@
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
-      <activationId>init [0]</activationId>
-      <rule>init</rule>
+      <activationId>INIT [0]</activationId>
+      <rule>INIT</rule>
       <declarations></declarations>
       <factHandleIds>0</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>asker [1]</activationId>
-      <rule>asker</rule>
+      <activationId>ASK [1]</activationId>
+      <rule>ASK</rule>
       <declarations>q=FUTURE</declarations>
       <factHandleIds>1</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>asker [1]</activationId>
-      <rule>asker</rule>
+      <activationId>ASK [1]</activationId>
+      <rule>ASK</rule>
       <declarations>q=FUTURE</declarations>
       <factHandleIds>1</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>2</factId>
-      <objectToString>Answer( question=FUTURE, choice=Near Future )</objectToString>
+      <objectToString>Answer( question=FUTURE, choice=A long time ago in a galaxy far, far away... )</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
-      <activationId>asker [1]</activationId>
-      <rule>asker</rule>
+      <activationId>ASK [1]</activationId>
+      <rule>ASK</rule>
       <declarations>q=FUTURE</declarations>
       <factHandleIds>1</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>FUTURE - near [2]</activationId>
-      <rule>FUTURE - near</rule>
+      <activationId>FUTURE - galaxy [2]</activationId>
+      <rule>FUTURE - galaxy</rule>
       <declarations></declarations>
       <factHandleIds>2</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>FUTURE - near [2]</activationId>
-      <rule>FUTURE - near</rule>
+      <activationId>FUTURE - galaxy [2]</activationId>
+      <rule>FUTURE - galaxy</rule>
       <declarations></declarations>
       <factHandleIds>2</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>3</factId>
-      <objectToString>NEAR_FUTURE</objectToString>
+      <objectToString>GALAXY_FUTURE</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
-      <activationId>FUTURE - near [2]</activationId>
-      <rule>FUTURE - near</rule>
+      <activationId>FUTURE - galaxy [2]</activationId>
+      <rule>FUTURE - galaxy</rule>
       <declarations></declarations>
       <factHandleIds>2</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>asker [3]</activationId>
-      <rule>asker</rule>
-      <declarations>q=NEAR_FUTURE</declarations>
+      <activationId>ASK [3]</activationId>
+      <rule>ASK</rule>
+      <declarations>q=GALAXY_FUTURE</declarations>
       <factHandleIds>3</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>asker [3]</activationId>
-      <rule>asker</rule>
-      <declarations>q=NEAR_FUTURE</declarations>
+      <activationId>ASK [3]</activationId>
+      <rule>ASK</rule>
+      <declarations>q=GALAXY_FUTURE</declarations>
       <factHandleIds>3</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>4</factId>
-      <objectToString>Answer( question=NEAR_FUTURE, choice=Doing some science! )</objectToString>
+      <objectToString>Answer( question=GALAXY_FUTURE, choice=Why not both? )</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
-      <activationId>asker [3]</activationId>
-      <rule>asker</rule>
-      <declarations>q=NEAR_FUTURE</declarations>
+      <activationId>ASK [3]</activationId>
+      <rule>ASK</rule>
+      <declarations>q=GALAXY_FUTURE</declarations>
       <factHandleIds>3</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>NEAR_FUTURE - science [4]</activationId>
-      <rule>NEAR_FUTURE - science</rule>
+      <activationId>GALAXY_FUTURE - both [4]</activationId>
+      <rule>GALAXY_FUTURE - both</rule>
       <declarations></declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>NEAR_FUTURE - science [4]</activationId>
-      <rule>NEAR_FUTURE - science</rule>
+      <activationId>GALAXY_FUTURE - both [4]</activationId>
+      <rule>GALAXY_FUTURE - both</rule>
       <declarations></declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ObjectLogEvent>
       <type>1</type>
       <factId>5</factId>
-      <objectToString>SCIENCE</objectToString>
+      <objectToString>Result( text=Yourgame is Star Wars Battle Front )</objectToString>
     </org.drools.core.audit.event.ObjectLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
-      <activationId>NEAR_FUTURE - science [4]</activationId>
-      <rule>NEAR_FUTURE - science</rule>
+      <activationId>GALAXY_FUTURE - both [4]</activationId>
+      <rule>GALAXY_FUTURE - both</rule>
       <declarations></declarations>
       <factHandleIds>4</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>4</type>
-      <activationId>asker [5]</activationId>
-      <rule>asker</rule>
-      <declarations>q=SCIENCE</declarations>
+      <activationId>SHOW [5]</activationId>
+      <rule>SHOW</rule>
+      <declarations>r=Result( text=Yourgame is Star Wars Battle Front )</declarations>
       <factHandleIds>5</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
       <type>6</type>
-      <activationId>asker [5]</activationId>
-      <rule>asker</rule>
-      <declarations>q=SCIENCE</declarations>
-      <factHandleIds>5</factHandleIds>
-    </org.drools.core.audit.event.ActivationLogEvent>
-    <org.drools.core.audit.event.ObjectLogEvent>
-      <type>1</type>
-      <factId>6</factId>
-      <objectToString>Answer( question=SCIENCE, choice=Yes )</objectToString>
-    </org.drools.core.audit.event.ObjectLogEvent>
-    <org.drools.core.audit.event.ActivationLogEvent>
-      <type>7</type>
-      <activationId>asker [5]</activationId>
-      <rule>asker</rule>
-      <declarations>q=SCIENCE</declarations>
+      <activationId>SHOW [5]</activationId>
+      <rule>SHOW</rule>
+      <declarations>r=Result( text=Yourgame is Star Wars Battle Front )</declarations>
       <factHandleIds>5</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
     <org.drools.core.audit.event.ActivationLogEvent>
-      <type>4</type>
-      <activationId>SCIENCE - yes [6]</activationId>
-      <rule>SCIENCE - yes</rule>
-      <declarations></declarations>
-      <factHandleIds>6</factHandleIds>
-    </org.drools.core.audit.event.ActivationLogEvent>
-    <org.drools.core.audit.event.ActivationLogEvent>
-      <type>6</type>
-      <activationId>SCIENCE - yes [6]</activationId>
-      <rule>SCIENCE - yes</rule>
-      <declarations></declarations>
-      <factHandleIds>6</factHandleIds>
-    </org.drools.core.audit.event.ActivationLogEvent>
-    <org.drools.core.audit.event.ObjectLogEvent>
-      <type>1</type>
-      <factId>7</factId>
-      <objectToString>Result( text=Your game is Portal )</objectToString>
-    </org.drools.core.audit.event.ObjectLogEvent>
-    <org.drools.core.audit.event.ActivationLogEvent>
       <type>7</type>
-      <activationId>SCIENCE - yes [6]</activationId>
-      <rule>SCIENCE - yes</rule>
-      <declarations></declarations>
-      <factHandleIds>6</factHandleIds>
-    </org.drools.core.audit.event.ActivationLogEvent>
-    <org.drools.core.audit.event.ActivationLogEvent>
-      <type>4</type>
-      <activationId>shower [7]</activationId>
-      <rule>shower</rule>
-      <declarations>r=Result( text=Your game is Portal )</declarations>
-      <factHandleIds>7</factHandleIds>
-    </org.drools.core.audit.event.ActivationLogEvent>
-    <org.drools.core.audit.event.ActivationLogEvent>
-      <type>6</type>
-      <activationId>shower [7]</activationId>
-      <rule>shower</rule>
-      <declarations>r=Result( text=Your game is Portal )</declarations>
-      <factHandleIds>7</factHandleIds>
-    </org.drools.core.audit.event.ActivationLogEvent>
-    <org.drools.core.audit.event.ActivationLogEvent>
-      <type>7</type>
-      <activationId>shower [7]</activationId>
-      <rule>shower</rule>
-      <declarations>r=Result( text=Your game is Portal )</declarations>
-      <factHandleIds>7</factHandleIds>
+      <activationId>SHOW [5]</activationId>
+      <rule>SHOW</rule>
+      <declarations>r=Result( text=Yourgame is Star Wars Battle Front )</declarations>
+      <factHandleIds>5</factHandleIds>
     </org.drools.core.audit.event.ActivationLogEvent>
   </events>
 </org.drools.core.audit.WorkingMemoryLog>

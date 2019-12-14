@@ -48,7 +48,7 @@ declare Result
 end
 
 //SUPPORT RULES
-rule "asker"
+rule "ASK"
 when
 	q: Question()
 then
@@ -62,7 +62,7 @@ then
 	
 end
 
-rule "shower"
+rule "SHOW"
 when
 	r: Result()
 then
@@ -71,7 +71,7 @@ end
 
  
 //Initializing
-rule "init"
+rule "INIT"
 then
     insert(Question.FUTURE);
 end
